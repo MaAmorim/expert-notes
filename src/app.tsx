@@ -2,6 +2,7 @@ import { ChangeEvent, useState } from 'react';
 import logo from './assets/logo-nlw-expert.svg';
 import { NewNoteCard } from './components/new- note-card';
 import { NoteCard } from './components/note-card';
+import { Search } from 'lucide-react';
 
 interface Note {
   id: string;
@@ -53,17 +54,18 @@ export function App() {
 
   return (
     <div className="mx-auto max-w-6xl my-12 space-y-6 px-5 ">
-      <img src={logo} alt="NLW Expert" />
-      <form className="w-full">
+      <h1 className="font-mono text-lg">{'{ } Expert notes'}</h1>
+      <form className="w-full relative">
+        <Search className="absolute size-6 top-1 left-1 text-zinc-500" />
         <input
-          className="w-full bg-transparent text-3xl font-semibold tracking-tight outline-none placeholder:text-slate-500"
+          className="w-full bg-transparent ring-2 ring-zinc-600 rounded-2xl text-2xl font-normal tracking-tight outline-none pl-8 placeholder:text-zinc-500"
           type="text"
-          placeholder="Busque em suas notas..."
+          // placeholder="Busque em suas notas..."
           onChange={handleSearch}
         />
       </form>
 
-      <div className="h-px bg-slate-700" />
+      <div className="h-px bg-zinc-700" />
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[250px]">
         <NewNoteCard onNoteCreated={onNoteCreated} />
