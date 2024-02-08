@@ -43,14 +43,17 @@ export function NewNoteCard({ onNoteCreated }: NewNoteCardProps) {
       'SpeechRecognition' in window || 'webkitSpeechRecognition' in window;
     if (!isSpeechRecognitionAPIAvailable) {
       toast.error('Infelizmente seu navegador não suporta a API de gravação');
+      return;
     }
 
     setIsRecording(true);
     setShouldShowOnboarding(false);
+
     const SpeechRecognitionAPI =
       window.SpeechRecognition || window.webkitSpeechRecognition;
 
     speechRecognition = new SpeechRecognitionAPI();
+
     speechRecognition.lang = 'pt-BR';
     speechRecognition.continuous = true;
     speechRecognition.maxAlternatives = 1;
@@ -142,7 +145,7 @@ export function NewNoteCard({ onNoteCreated }: NewNoteCardProps) {
               ) : (
                 <button
                   className="wfull bg-lime-400 py-4 etxt-center text-sm text-lime-950 outline-none font-medium hover:bg-lime-500"
-                  type="submit"
+                  type="button"
                   onClick={handleSaveNote}
                 >
                   Salvar nota
